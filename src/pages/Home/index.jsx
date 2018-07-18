@@ -2,7 +2,7 @@ import React from 'react';
 import IndustryApi from '@/core/services/industry';
 import IndustryModel from '@/core/model/industry';
 import Header from '@/components/Header/index';
-import { Table, Button, DatePicker } from 'antd';
+import { Table, DatePicker } from 'antd';
 import './style.less';
 // import moment from 'moment';
 import cities from './config';
@@ -15,7 +15,8 @@ class Home extends React.Component {
 		this.state = {
 			data: [],
 			loading: false,
-			pagination: {}
+			pagination: {},
+			timeValue: []
 		}
 	}
 
@@ -28,7 +29,7 @@ class Home extends React.Component {
 			loading: true
 		});
 		IndustryApi.getLatestInfo().then(res => {
-			console.log(res.data);
+			// console.log(res.data);
 			const pagination = { ...this.state.pagination };
 			pagination.total = res.data.length;
 			let temp = res.data.map(item => {
@@ -47,7 +48,7 @@ class Home extends React.Component {
 			loading: true
 		});
 		IndustryApi.getIndustryInfo(area, nature, time, page).then(res => {
-			console.log(res.data);
+			// console.log(res.data);
 			const pagination = { ...this.state.pagination };
 			pagination.total = res.data.length;
 			let temp = res.data.map(item => {
@@ -66,20 +67,17 @@ class Home extends React.Component {
 		this.setState({ searchText: selectedKeys[0] });
 	}
 
-	handleReset () {
-		// clearFilters();
-		this.setState({ searchText: '' });
-	}
-
-	handleTableChange(pagination, filters, sorter) {
-		console.log(filters);
+	handleTableChange(pagination, filters) {
+		// console.log(this.state.timeValue);
+		// console.log(filters);
+		console.log('handletablechange');
 		const pager = { ...this.state.pagination };
 		pager.current = pagination.current;
 		this.setState({
 			pagination: pager,
 		});
 		const page = pagination.current - 1;
-		const area = filters['area'][0] || '';
+		const area = filters['area']? filters['area'][0] : '';
 		// const nature = filters['nature'] || '';
 		const time = 0;
 		/*
@@ -92,6 +90,11 @@ class Home extends React.Component {
 		this.getIndustryInfo(area, time, page);
 	}
 
+	selectDate(value) {
+		console.log('selectDate');
+		console.log(value);
+	}
+
 	render() {
 		const columns = [
 			{
@@ -99,8 +102,7 @@ class Home extends React.Component {
 				dataIndex: 'area',
 				key: 'area',
 				filters: cities,
-				filterMultiple: false
-				// onFilter: (value, record) => record.area.toLowerCase().includes(value.toLowerCase())
+				filterMultiple: false,
 			},
 			{
 				title: '时间',
@@ -108,12 +110,12 @@ class Home extends React.Component {
 				key: 'time',
 				filterDropdown: (
 					<div className="custom-filter-dropdown">
-						<RangePicker />
-						<Button type="primary" onClick={this.onSearch}>Search</Button>
-					</div>
-				),
-				filterDropdownVisible: this.state.filterDropdownVisible,
-				onFilterDropdownVisibleChange: visible => this.setState({ filterDropdownVisible: visible })
+						<RangePicker
+							onOk={this.selectDate}
+							showTime={{ format: 'HH:mm' }}
+      				format="YYYY-MM-DD HH:mm"
+						/>
+					</div>),
 			},
 			{
 				title: '标题',
@@ -130,7 +132,6 @@ class Home extends React.Component {
 				dataIndex: 'url',
 				key: 'url',
 				render: text => <a href={`${text}`}>{text}</a>,
-				// onFilter: (value, record) => record.city.indexOf(value) === 0,
 			},
 			{
 				title: '关键词',
