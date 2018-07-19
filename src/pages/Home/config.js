@@ -45,26 +45,41 @@
 // ];
 
 const cities = [
+	/*
 	{
 		text: '全部',
 		value: 'all'
 	},
 	{
 		text: '北京',
-		value: 'beijing'
-	},
+		value: 'beijing',
+		key: 'beijing'
+	},*/
 	{
 		text: '上海',
-		value: 'shanghai'
+		value: 'shanghai',
+		key: 'shanghai'
 	},
 	{
 		text: '江苏',
-		value: 'jiangsu'
+		value: 'jiangsu',
+		key: 'jiangsu'
+	},
+	{
+		text: '安徽',
+		value: 'anhui',
+		key: 'anhui'
 	},
 	{
 		text: '浙江',
 		value: 'zhejiang'
 	},
+	{
+		text: '工业互联网产业联盟',
+		value: 'chanyelianmeng',
+		key: 'chanyelianmeng'
+	},
+	/*
 	{
 		text: '河北',
 		value: 'hebei'
@@ -92,10 +107,6 @@ const cities = [
 	{
 		text: '吉林',
 		value: 'jilin'
-	},
-	{
-		text: '安徽',
-		value: 'anhui'
 	},
 	{
 		text: '福建',
@@ -180,6 +191,6 @@ const cities = [
 	{
 		text: '澳门',
 		value: 'aomen'
-	},
+	},*/
 ]
 export default cities;

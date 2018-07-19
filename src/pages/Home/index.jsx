@@ -78,7 +78,7 @@ class Home extends React.Component {
 			pagination: pager,
 		});
 		params.page = 0;
-		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area')!=='all') {
+		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area').length) {
 			params.area = this.props.form.getFieldValue('area');
 		}
 		if (this.props.form.getFieldValue('time')) {
@@ -98,7 +98,7 @@ class Home extends React.Component {
 			pagination: pager,
 		});
 		params.page = pagination.current - 1;
-		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area')!=='all') {
+		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area').length) {
 			params.area = this.props.form.getFieldValue('area');
 		}
 		
@@ -176,7 +176,7 @@ class Home extends React.Component {
 		];
 
 		const { getFieldDecorator } = this.props.form;
-		const cityOptions = this.state.cities.map(city => <Option key={city.value}>{city.text}</Option>);
+		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
 
 		return (
 			<div>
@@ -186,7 +186,10 @@ class Home extends React.Component {
 						<FormItem>
 							{
 								getFieldDecorator('area')(
-									<Select placeholder="请选择地区" style={{ width: 120 }}>
+									<Select
+										mode="multiple"
+										placeholder="请选择地区"
+										style={{ width: 300 }}>
 										{cityOptions}
 									</Select>
 							)}
