@@ -5,14 +5,15 @@ class Industry {
 		this.api = api;
 	}
 
-	getIndustryInfo(area, time, page) {
+	getIndustryInfo(params) {
+		/*
 		const params = {
 			indus: {
 				area
 			},
 			time,
 			page
-		};
+		};*/
 		return this.api.post('/industrial/news', params).then(res => {
 			return res.data;
 		});
