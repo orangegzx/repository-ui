@@ -79,6 +79,11 @@ const cities = [
 		value: 'chanyelianmeng',
 		key: 'chanyelianmeng'
 	},
+	{
+		text: '工信部',
+		value: 'gongxinbu',
+		key: 'gongxinbu'
+	},
 	/*
 	{
 		text: '河北',

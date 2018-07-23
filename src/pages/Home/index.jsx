@@ -111,32 +111,6 @@ class Home extends React.Component {
 		this.getIndustryInfo(params);
 	}
 
-	/*
-	selectArea(value, record) {
-		console.log('select area');
-		console.log(value);
-		const pager = { ...this.state.pagination };
-		pager.current = this.state.pagination.current;
-		this.setState({
-			pagination: pager,
-		});
-		const page = this.state.pagination.current - 1;
-		const area = value;
-		const time = 0;
-		this.getIndustryInfo(area, time, page);
-	}
-
-	selectDate(value) {
-		console.log('selectDate');
-		console.log(value);
-		const startDate = moment(value[0]).unix();
-		const endDate = moment(value[1]).unix();
-		const time = endDate - startDate;
-		const page = this.state.pagination.current - 1;
-		const area = 'shanghai';
-		this.getIndustryInfo(area, time, page);
-	}
-*/
 	render() {
 		const columns = [
 			{
@@ -170,8 +144,6 @@ class Home extends React.Component {
 				title: '关键词',
 				dataIndex: 'keyword',
 				key: 'keyword'
-				// filterIcon: filtered => <Icon type='smile-o' style={{ color: filtered ? '#108ee9' : '#aaa' }} />,
-				// onFilter: (value, record) => record.name.toLowerCase().includes(value.toLowerCase()),
 			},
 		];
 
@@ -187,6 +159,8 @@ class Home extends React.Component {
 							{
 								getFieldDecorator('area')(
 									<Select
+										showSearch
+										optionFilterProp="children"
 										mode="multiple"
 										placeholder="请选择地区"
 										style={{ width: 300 }}>
