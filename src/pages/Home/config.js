@@ -84,6 +84,11 @@ const cities = [
 		value: 'gongxinbu',
 		key: 'gongxinbu'
 	},
+	{
+		text: '搜狐',
+		value: 'souhu',
+		key: 'souhu'
+	}
 	/*
 	{
 		text: '河北',

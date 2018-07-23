@@ -25,21 +25,25 @@ class Home extends React.Component {
 			area: '',
 			keyword: '',
 			cities: cities,
+			flag: 0     // 0: 加载最新   1: 加载筛选数据
 		}
 	}
 
 	componentDidMount() {
-		this.getLatestInfo();
+		this.getLatestInfo(0);
 	}
 
-	getLatestInfo() {
+	getLatestInfo(page) {
+		this.setState({
+			flag: 0
+		});
 		this.setState({
 			loading: true
 		});
-		IndustryApi.getLatestInfo().then(res => {
+		IndustryApi.getLatestInfo(page).then(res => {
 			const pagination = { ...this.state.pagination };
-			pagination.total = res.data.length;
-			let temp = res.data.map(item => {
+			pagination.total = pagination.pageSize * res.data.page;
+			let temp = res.data.items.map(item => {
 				return new IndustryModel(item);
 			});
 			this.setState({
@@ -50,11 +54,14 @@ class Home extends React.Component {
 		});
 	}
 
-	getIndustryInfo(area, nature, time, page) {
+	getIndustryInfo(params) {
+		this.setState({
+			flag: 1
+		});
 		this.setState({
 			loading: true
 		});
-		IndustryApi.getIndustryInfo(area, nature, time, page).then(res => {
+		IndustryApi.getIndustryInfo(params).then(res => {
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
@@ -108,7 +115,11 @@ class Home extends React.Component {
 			params.time = [startDate, endDate];
 		}
 		
-		this.getIndustryInfo(params);
+		if(!this.state.flag) {
+			this.getLatestInfo(pagination.current - 1);
+		} else {
+			this.getIndustryInfo(params);
+		}
 	}
 
 	render() {
