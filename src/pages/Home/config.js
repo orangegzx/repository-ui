@@ -26,7 +26,8 @@ const cities = [
 	},
 	{
 		text: '浙江',
-		value: 'zhejiang'
+		value: 'zhejiang',
+		key: 'zhejiang'
 	},
 	{
 		text: '工业互联网产业联盟',
@@ -161,13 +162,13 @@ const cities = [
 const keywords = [
 	{
 		text: '工业App',
-		value: 'gongyeapp',
-		key: '1'
+		value: '工业App',
+		key: 'app'
 	},
 	{
 		text: '工业互联网',
-		value: '',
-		key: '2'
+		value: '工业互联网',
+		key: 'hulianwang'
 	},
 ]
 

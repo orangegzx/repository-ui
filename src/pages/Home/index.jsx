@@ -88,11 +88,9 @@ class Home extends React.Component {
 		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area').length) {
 			params.area = this.props.form.getFieldValue('area');
 		}
-		/*
 		if (this.props.form.getFieldValue('keyword') && this.props.form.getFieldValue('keyword').length) {
 			params.key = this.props.form.getFieldValue('keyword');
 		}
-		*/
 		if (this.props.form.getFieldValue('time')) {
 			const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
 			const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
@@ -103,7 +101,7 @@ class Home extends React.Component {
 	}
 	
 	handleTableChange(pagination, filters, sorters) {
-		if(sorters && Object.keys(sorters).length) {
+		if(sorters && Object.keys(sorters).length && pagination.current === this.state.pagination.current) {
 			return;
 		}
 		let params = {};
@@ -117,11 +115,9 @@ class Home extends React.Component {
 			params.area = this.props.form.getFieldValue('area');
 		}
 
-		/*
 		if (this.props.form.getFieldValue('keyword') && this.props.form.getFieldValue('keyword').length) {
 			params.key = this.props.form.getFieldValue('keyword');
 		}
-		*/
 		if (this.props.form.getFieldValue('time')) {
 			const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
 			const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
@@ -181,7 +177,7 @@ class Home extends React.Component {
 
 		const { getFieldDecorator } = this.props.form;
 		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
-		const keywordOptions = keywords.map(word => <Option key={word.value} value={word.value}>{word.text}</Option>);
+		const keywordOptions = keywords.map(word => <Option key={word.key} value={word.value}>{word.text}</Option>);
 		return (
 			<div>
 				<Header />

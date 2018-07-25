@@ -12,6 +12,7 @@ class Industry {
         this.url = industry.url;
         this.nature = industry.nature;
         this.title = industry.title;
+        this.keyword = industry.keyword;
     }
 
     _time(industry) {
