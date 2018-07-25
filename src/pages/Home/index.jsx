@@ -5,7 +5,7 @@ import Header from '@/components/Header/index';
 import { Table, Button, DatePicker, Form, Select } from 'antd';
 import './style.less';
 import moment from 'moment';
-import cities from './config';
+import { cities, keywords }  from './config';
 
 const FormItem = Form.Item;
 const { RangePicker} = DatePicker;
@@ -88,6 +88,11 @@ class Home extends React.Component {
 		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area').length) {
 			params.area = this.props.form.getFieldValue('area');
 		}
+		/*
+		if (this.props.form.getFieldValue('keyword') && this.props.form.getFieldValue('keyword').length) {
+			params.key = this.props.form.getFieldValue('keyword');
+		}
+		*/
 		if (this.props.form.getFieldValue('time')) {
 			const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
 			const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
@@ -97,7 +102,10 @@ class Home extends React.Component {
 		this.getIndustryInfo(params);
 	}
 	
-	handleTableChange(pagination) {
+	handleTableChange(pagination, filters, sorters) {
+		if(sorters && Object.keys(sorters).length) {
+			return;
+		}
 		let params = {};
 		const pager = { ...this.state.pagination };
 		pager.current = pagination.current;
@@ -108,7 +116,12 @@ class Home extends React.Component {
 		if (this.props.form.getFieldValue('area') && this.props.form.getFieldValue('area').length) {
 			params.area = this.props.form.getFieldValue('area');
 		}
-		
+
+		/*
+		if (this.props.form.getFieldValue('keyword') && this.props.form.getFieldValue('keyword').length) {
+			params.key = this.props.form.getFieldValue('keyword');
+		}
+		*/
 		if (this.props.form.getFieldValue('time')) {
 			const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
 			const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
@@ -129,38 +142,46 @@ class Home extends React.Component {
 				dataIndex: 'area',
 				key: 'area',
 				filterMultiple: false,
+				className: 'area-tr',
+				fixed: 'left'
 			},
 			{
 				title: '时间',
 				dataIndex: 'time',
 				key: 'time',
+				sorter: (a, b) => moment(a.time) - moment(b.time),
+				className: 'time-tr'
 			},
 			{
 				title: '标题',
 				dataIndex: 'title',
 				key: 'title',
+				className: 'title-tr'
 			},
 			{
 				title: '分类',
 				dataIndex: 'nature',
 				key: 'nature',
+				width: 100
 			},
 			{
 				title: 'url',
 				dataIndex: 'url',
 				key: 'url',
-				render: text => <a href={`${text}`} target="_blank">{text}</a>,
+				className: 'url-tr',
+				render: text => <a href={`${text}`} target="_blank"><span>{text}</span></a>,
 			},
 			{
 				title: '关键词',
 				dataIndex: 'keyword',
-				key: 'keyword'
+				key: 'keyword',
+				width: 100
 			},
 		];
 
 		const { getFieldDecorator } = this.props.form;
 		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
-
+		const keywordOptions = keywords.map(word => <Option key={word.value} value={word.value}>{word.text}</Option>);
 		return (
 			<div>
 				<Header />
@@ -176,6 +197,19 @@ class Home extends React.Component {
 										placeholder="请选择地区"
 										style={{ width: 300 }}>
 										{cityOptions}
+									</Select>
+							)}
+						</FormItem>
+						<FormItem>
+							{
+								getFieldDecorator('keyword')(
+									<Select
+										showSearch
+										optionFilterProp="children"
+										mode="multiple"
+										placeholder="请选择关键词"
+										style={{ width: 300 }}>
+										{keywordOptions}
 									</Select>
 							)}
 						</FormItem>
@@ -198,6 +232,7 @@ class Home extends React.Component {
 						pagination={this.state.pagination}
 						loading={this.state.loading}
 						onChange={this.handleTableChange.bind(this)}
+						scroll={{ x: 1280 }}
 					/>
 				</div>
 			</div>

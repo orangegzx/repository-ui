@@ -1,49 +1,3 @@
-// const columns = [
-// 	{
-// 		title: '省市',
-// 		dataIndex: 'area',
-// 		sorter: true,
-// 		// render: 
-// 		width: '10%',
-// 		onFilter: (value, record) => record.area.indexOf(value) === 0,
-// 	},
-// 	{
-// 		title: '时间',
-// 		dataIndex: 'time',
-// 		sorter: true,
-// 		// render: 
-// 		width: '10%',
-// 	},
-// 	{
-// 		title: '分类',
-// 		dataIndex: 'sort',
-// 		sorter: true,
-// 		// render: 
-// 		width: '10%',
-// 		/*
-// 		filters: [
-// 			{ text: 'London', value: 'London' },
-// 			{ text: 'New York', value: 'New York' },
-// 		], */
-// 		onFilter: (value, record) => record.sort.includes(value),
-// 	},
-// 	{
-// 		title: '附件',
-// 		dataIndex: 'url',
-// 		sorter: true,
-// 		render: text => <a href={`${text}`}>{text}</a>,
-// 		width: '10%',
-// 		onFilter: (value, record) => record.city.indexOf(value) === 0,
-// 	},
-// 	{
-// 		title: '关键词',
-// 		dataIndex: 'keyword',
-// 		sorter: true,
-// 		// render: 
-// 		width: '10%',
-// 	},
-// ];
-
 const cities = [
 	/*
 	{
@@ -203,4 +157,21 @@ const cities = [
 		value: 'aomen'
 	},*/
 ]
-export default cities;
+
+const keywords = [
+	{
+		text: '工业App',
+		value: 'gongyeapp',
+		key: '1'
+	},
+	{
+		text: '工业互联网',
+		value: '',
+		key: '2'
+	},
+]
+
+export {
+	cities,
+	keywords
+}
