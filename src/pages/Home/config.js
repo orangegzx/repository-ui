@@ -43,6 +43,10 @@ const cities = [
 		text: '搜狐',
 		value: 'souhu',
 		key: 'souhu'
+	},
+	{
+		text: '山东',
+		value: 'shandong'
 	}
 	/*
 	{
@@ -80,10 +84,6 @@ const cities = [
 	{
 		text: '江西',
 		value: 'jiangxi'
-	},
-	{
-		text: '山东',
-		value: 'shandong'
 	},
 	{
 		text: '湖北',
