@@ -46,7 +46,23 @@ const cities = [
 	},
 	{
 		text: '山东',
-		value: 'shandong'
+		value: 'shandong',
+		key: 'shandong'
+	},
+	{
+		text: '活动家',
+		value: 'huodongjia',
+		key: 'huodongjia'
+	},
+	{
+		text: '造奇智能',
+		value: 'zaoqizhineng',
+		key: 'zaoqizhineng'
+	},
+	{
+		text: '活动行',
+		value: 'huodongxing',
+		key: 'huodongxing'
 	}
 	/*
 	{
