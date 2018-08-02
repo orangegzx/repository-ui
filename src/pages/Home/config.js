@@ -186,6 +186,11 @@ const keywords = [
 		value: '工业互联网',
 		key: 'hulianwang'
 	},
+	{
+		text: '工业互联网活动',
+		value: '工业互联网活动',
+		key: 'hulianwanghuodong'
+	},
 ]
 
 export {
