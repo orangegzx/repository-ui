@@ -3,12 +3,12 @@ const cities = [
 	{
 		text: '全部',
 		value: 'all'
-	},
+	},*/
 	{
 		text: '北京',
 		value: 'beijing',
 		key: 'beijing'
-	},*/
+	},
 	{
 		text: '上海',
 		value: 'shanghai',
