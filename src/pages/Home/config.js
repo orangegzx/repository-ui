@@ -15,6 +15,10 @@ const cities = [
 		key: 'shanghai'
 	},
 	{
+		text: '广东',
+		value: 'guangdong'
+	},
+	{
 		text: '江苏',
 		value: 'jiangsu',
 		key: 'jiangsu'
@@ -108,10 +112,6 @@ const cities = [
 	{
 		text: '湖南',
 		value: 'hunan'
-	},
-	{
-		text: '广东',
-		value: 'guangdong'
 	},
 	{
 		text: '广西',
