@@ -209,7 +209,7 @@ const keywords = [
 	},
 	{
 		text: '竞品-(富士康)beacon',
-		value: 'beacon',
+		value: '富士康beacon',
 		key: 'beacon'
 	},
 	{
