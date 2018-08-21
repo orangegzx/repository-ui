@@ -16,7 +16,8 @@ const cities = [
 	},
 	{
 		text: '广东',
-		value: 'guangdong'
+		value: 'guangdong',
+		key: 'guangdong'
 	},
 	{
 		text: '江苏',
@@ -190,6 +191,31 @@ const keywords = [
 		text: '工业互联网活动',
 		value: '工业互联网活动',
 		key: 'hulianwanghuodong'
+	},
+	{
+		text: '竞品-航天云网',
+		value: '航天云网',
+		key: 'hangtianyun'
+	},
+	{
+		text: '竞品-根云',
+		value: '根云',
+		key: 'genyun'
+	},
+	{
+		text: '竞品-用友工业互联网',
+		value: '用友工业互联网',
+		key: 'yongyou'
+	},
+	{
+		text: '竞品-(富士康)beacon',
+		value: 'beacon',
+		key: 'beacon'
+	},
+	{
+		text: '竞品-(智能云科)isesol',
+		value: 'isesol',
+		key: 'isesol'
 	},
 ]
 
