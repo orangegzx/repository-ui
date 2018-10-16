@@ -16,7 +16,7 @@ class Industry {
     }
 
     _time(industry) {
-        return moment((industry.time) * 1000).format('YYYY-MM-DD HH:mm');
+        return moment((industry.time) * 1000).format('YYYY-MM-DD');
     }
 
 }

@@ -22,7 +22,7 @@ class Industry {
 		const params = {
 			page
 		};
-		return this.api.post('industrial/latest', params).then(res => {
+		return this.api.post('/industrial/latest', params).then(res => {
 			return res.data;
 		});
 	}

@@ -40,7 +40,9 @@ class Home extends React.Component {
 		this.setState({
 			loading: true
 		});
+		console.log(page)
 		IndustryApi.getLatestInfo(page).then(res => {
+			console.log(res)
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
@@ -61,7 +63,11 @@ class Home extends React.Component {
 		this.setState({
 			loading: true
 		});
+		console.log("发送请求：")
+		console.log(params)
 		IndustryApi.getIndustryInfo(params).then(res => {
+			console.log(params)
+			console.log(res)
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
@@ -118,11 +124,11 @@ class Home extends React.Component {
 		if (this.props.form.getFieldValue('keyword') && this.props.form.getFieldValue('keyword').length) {
 			params.key = this.props.form.getFieldValue('keyword');
 		}
-		if (this.props.form.getFieldValue('time')) {
-			const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
-			const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
-			params.time = [startDate, endDate];
-		}
+		// if (this.props.form.getFieldValue('time')) {
+		// 	const startDate = moment(this.props.form.getFieldValue('time')[0]).unix();
+		// 	const endDate = moment(this.props.form.getFieldValue('time')[1]).unix();
+		// 	params.time = [startDate, endDate];
+		// }
 		
 		if(!this.state.flag) {
 			this.getLatestInfo(pagination.current - 1);
