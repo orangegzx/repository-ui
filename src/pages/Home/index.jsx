@@ -141,7 +141,7 @@ class Home extends React.Component {
 		// table 字段
 		const columns = [
 			{
-				title: '省市',
+				title: '来源',
 				dataIndex: 'area',
 				key: 'area',
 				filterMultiple: false,
