@@ -200,7 +200,7 @@ class Home extends React.Component {
 										showSearch
 										optionFilterProp="children"
 										mode="multiple"
-										placeholder="请选择地区"
+										placeholder="请选择来源"
 										style={{ width: 300 }}>
 										{cityOptions}
 									</Select>
