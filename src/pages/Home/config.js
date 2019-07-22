@@ -36,6 +36,11 @@ const cities = [
 		key: 'zhejiang'
 	},
 	{
+		text: '山东',
+		value: 'shandong',
+		key: 'shandong'
+	},
+	{
 		text: '工业互联网产业联盟',
 		value: 'chanyelianmeng',
 		key: 'chanyelianmeng'
@@ -56,19 +61,14 @@ const cities = [
 		key: 'souhu'
 	},
 	{
-		text: '山东',
-		value: 'shandong',
-		key: 'shandong'
+		text: '造奇智能',
+		value: 'zaoqizhineng',
+		key: 'zaoqizhineng'
 	},
 	{
 		text: '活动家',
 		value: 'huodongjia',
 		key: 'huodongjia'
-	},
-	{
-		text: '造奇智能',
-		value: 'zaoqizhineng',
-		key: 'zaoqizhineng'
 	},
 	{
 		text: '活动行',
@@ -195,6 +195,11 @@ const keywords = [
 		key: 'hulianwang'
 	},
 	{
+		text: '工业互联网活动',
+		value: '工业互联网活动',
+		key: 'hulianwanghuodong'
+	},
+	{
 		text: '工业物联网',
 		value: '工业物联网',
 		key: 'industryInternet'
@@ -203,11 +208,6 @@ const keywords = [
 		text: '工业4.0',
 		value: '工业4.0',
 		key: 'industry4.0'
-	},
-	{
-		text: '工业互联网活动',
-		value: '工业互联网活动',
-		key: 'hulianwanghuodong'
 	},
 	{
 		text: '智慧工厂',
