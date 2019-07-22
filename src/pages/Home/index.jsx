@@ -5,7 +5,7 @@ import Header from '@/components/Header/index';
 import { Table, Button, DatePicker, Form, Select } from 'antd';
 import './style.less';
 import moment from 'moment';
-import { cities, keywords }  from './config';
+import { cities, keywords }  from './config'; // 地区，关键字
 
 const FormItem = Form.Item;
 const { RangePicker} = DatePicker;
@@ -138,6 +138,7 @@ class Home extends React.Component {
 	}
 
 	render() {
+		// table 字段
 		const columns = [
 			{
 				title: '省市',
@@ -182,7 +183,10 @@ class Home extends React.Component {
 		];
 
 		const { getFieldDecorator } = this.props.form;
+		// console.log('a', this.props.form)
+		// 地区
 		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
+		// 关键字
 		const keywordOptions = keywords.map(word => <Option key={word.key} value={word.value}>{word.text}</Option>);
 		return (
 			<div>

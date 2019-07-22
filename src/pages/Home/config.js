@@ -1,3 +1,4 @@
+// 地区关键字
 const cities = [
 	/*
 	{
@@ -43,6 +44,11 @@ const cities = [
 		text: '工信部',
 		value: 'gongxinbu',
 		key: 'gongxinbu'
+	},
+	{
+		text: '物联网世界',
+		value: 'netofthings',
+		key: 'netofthings'
 	},
 	{
 		text: '搜狐',
@@ -176,6 +182,7 @@ const cities = [
 	},*/
 ]
 
+// 关键字
 const keywords = [
 	{
 		text: '工业App',
@@ -188,9 +195,29 @@ const keywords = [
 		key: 'hulianwang'
 	},
 	{
+		text: '工业物联网',
+		value: '工业物联网',
+		key: 'industryInternet'
+	},
+	{
+		text: '工业4.0',
+		value: '工业4.0',
+		key: 'industry4.0'
+	},
+	{
 		text: '工业互联网活动',
 		value: '工业互联网活动',
 		key: 'hulianwanghuodong'
+	},
+	{
+		text: '智慧工厂',
+		value: '智慧工厂',
+		key: 'smartfactory'
+	},
+	{
+		text: '智慧制造2025',
+		value: '智慧制造2025',
+		key: 'smartmanufacturing'
 	},
 	{
 		text: '竞品-航天云网',
