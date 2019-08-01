@@ -2,7 +2,7 @@ import React from 'react';
 import IndustryApi from '@/core/services/industry';
 import IndustryModel from '@/core/model/industry';
 import Header from '@/components/Header/index';
-import { Table, Button, DatePicker, Form, Select } from 'antd';
+import { Table, Button, DatePicker, Form, Select, message } from 'antd';
 import './style.less';
 import moment from 'moment';
 
@@ -23,7 +23,6 @@ class Home extends React.Component {
 			timeValue: [],
 			area: '', // 表格的来源
 			keywords: [], // 关键词
-			// cities: cities, //表格的来源 = 来源数据
 			cities: [], //表格的来源 = 来源数据
 			flag: 0     // 0: 加载最新   1: 加载筛选数据
 		}
@@ -38,19 +37,22 @@ class Home extends React.Component {
 	// 获取来源数据
 	getOrigins() {
 		IndustryApi.getOrigins().then(res => {
-			console.log('来源列表：', res.data)
 			this.setState({
 				cities: res.data,
 			});
+		}).catch(err => {
+			message.warning('获取来源数据出错，请稍后重试！')
 		});
 	}
 
+	// 获取关键字列表
 	getKeywords() {
 		IndustryApi.getKeywords().then(res => {
-			console.log('关键词列表：', res.data)
 			this.setState({
 				keywords: res.data,
 			});
+		}).catch(err => {
+			message.warning('获取关键字数据出错，请稍后重试！')
 		});
 	}
 
@@ -64,7 +66,6 @@ class Home extends React.Component {
 		});
 		IndustryApi.getLatestInfo(page).then(res => {
 			const pagination = { ...this.state.pagination };
-			console.log(res.data.items)
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
 				return new IndustryModel(item);
@@ -74,6 +75,11 @@ class Home extends React.Component {
 				loading: false,
 				pagination,
 			});
+		}).catch(err => {
+			this.setState({
+				loading: false,
+			});
+			message.warning('获取数据出错，请稍后重试！')
 		});
 	}
 
@@ -85,8 +91,6 @@ class Home extends React.Component {
 		this.setState({
 			loading: true
 		});
-		console.log("发送请求：")
-		console.log(params)
 		IndustryApi.getIndustryInfo(params).then(res => {
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
@@ -98,6 +102,11 @@ class Home extends React.Component {
 				loading: false,
 				pagination,
 			});
+		}).catch(err => {
+			this.setState({
+				loading: false,
+			});
+			message.warning('获取数据出错，请稍后重试！')
 		});
 	}
 
