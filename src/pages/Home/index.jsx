@@ -178,11 +178,10 @@ class Home extends React.Component {
 				fixed: 'left'
 			},
 			{
-				title: '时间',
-				dataIndex: 'time',
-				key: 'time',
-				sorter: (a, b) => moment(a.time) - moment(b.time),
-				className: 'time-tr'
+				title: '关键词',
+				dataIndex: 'keyword',
+				key: 'keyword',
+				width: 110
 			},
 			{
 				title: '标题',
@@ -204,10 +203,11 @@ class Home extends React.Component {
 				render: text => <a href={`${text}`} target="_blank"><span>{text}</span></a>,
 			},
 			{
-				title: '关键词',
-				dataIndex: 'keyword',
-				key: 'keyword',
-				width: 100
+				title: '时间',
+				dataIndex: 'time',
+				key: 'time',
+				sorter: (a, b) => moment(a.time) - moment(b.time),
+				className: 'time-tr'
 			},
 		];
 		const { getFieldDecorator } = this.props.form;
@@ -226,10 +226,11 @@ class Home extends React.Component {
 								getFieldDecorator('area')(
 									<Select
 										showSearch
+										style={{ width: 300 }}
+										placeholder="请选择来源"
 										optionFilterProp="children"
 										mode="multiple"
-										placeholder="请选择来源"
-										style={{ width: 300 }}>
+									>
 										{cityOptions}
 									</Select>
 							)}
@@ -242,7 +243,8 @@ class Home extends React.Component {
 										optionFilterProp="children"
 										mode="multiple"
 										placeholder="请选择关键词"
-										style={{ width: 300 }}>
+										style={{ width: 300 }}
+									>
 										{keywordOptions}
 									</Select>
 							)}
