@@ -5,7 +5,6 @@ import Header from '@/components/Header/index';
 import { Table, Button, DatePicker, Form, Select } from 'antd';
 import './style.less';
 import moment from 'moment';
-import { cities, keywords }  from './config'; // 地区，关键字
 
 const FormItem = Form.Item;
 const { RangePicker} = DatePicker;
@@ -23,8 +22,9 @@ class Home extends React.Component {
 			},
 			timeValue: [],
 			area: '', // 表格的来源
-			keyword: '', // 关键词
-			cities: cities, //表格的来源 = 来源数据
+			keywords: [], // 关键词
+			// cities: cities, //表格的来源 = 来源数据
+			cities: [], //表格的来源 = 来源数据
 			flag: 0     // 0: 加载最新   1: 加载筛选数据
 		}
 	}
@@ -39,22 +39,18 @@ class Home extends React.Component {
 	getOrigins() {
 		IndustryApi.getOrigins().then(res => {
 			console.log('来源列表：', res.data)
-			// this.setState({
-			// 	data: temp,
-			// 	loading: false,
-			// 	pagination,
-			// });
+			this.setState({
+				cities: res.data,
+			});
 		});
 	}
 
 	getKeywords() {
 		IndustryApi.getKeywords().then(res => {
 			console.log('关键词列表：', res.data)
-			// this.setState({
-			// 	data: temp,
-			// 	loading: false,
-			// 	pagination,
-			// });
+			this.setState({
+				keywords: res.data,
+			});
 		});
 	}
 
@@ -68,11 +64,11 @@ class Home extends React.Component {
 		});
 		IndustryApi.getLatestInfo(page).then(res => {
 			const pagination = { ...this.state.pagination };
+			console.log(res.data.items)
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
 				return new IndustryModel(item);
 			});
-			// console.log(temp)
 			this.setState({
 				data: temp,
 				loading: false,
@@ -185,12 +181,12 @@ class Home extends React.Component {
 				key: 'title',
 				className: 'title-tr'
 			},
-			{
-				title: '分类',
-				dataIndex: 'nature',
-				key: 'nature',
-				width: 100
-			},
+			// {
+			// 	title: '分类',
+			// 	dataIndex: 'nature',
+			// 	key: 'nature',
+			// 	width: 100
+			// },
 			{
 				title: 'url',
 				dataIndex: 'url',
@@ -209,7 +205,7 @@ class Home extends React.Component {
 		// 地区
 		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
 		// 关键字
-		const keywordOptions = keywords.map(word => <Option key={word.key} value={word.value}>{word.text}</Option>);
+		const keywordOptions = this.state.keywords.map((word, index)=> <Option key={index} value={word}>{word}</Option>);
 		return (
 			<div>
 				<Header />

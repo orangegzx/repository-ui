@@ -9,9 +9,9 @@ class Industry {
         this.key = industry.id;
         this.area = industry.area;
         this.time = this._time(industry);
-        this.url = industry.url;
-        this.nature = industry.nature;
         this.title = industry.title;
+        this.url = industry.url;
+        // this.nature = industry.nature;
         this.keyword = industry.keyword;
     }
 
