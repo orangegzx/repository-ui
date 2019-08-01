@@ -30,7 +30,19 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
+		this.getOrigins()
 		this.getLatestInfo(0); // 默认获取第一页的内容
+	}
+	// 获取来源数据
+	getOrigins() {
+		IndustryApi.getOrigins().then(res => {
+			console.log(res.data)
+			// this.setState({
+			// 	data: temp,
+			// 	loading: false,
+			// 	pagination,
+			// });
+		});
 	}
 
 	// 初始化数据
@@ -41,14 +53,13 @@ class Home extends React.Component {
 		this.setState({
 			loading: true
 		});
-		console.log(1)
 		IndustryApi.getLatestInfo(page).then(res => {
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
 				return new IndustryModel(item);
 			});
-			console.log(temp)
+			// console.log(temp)
 			this.setState({
 				data: temp,
 				loading: false,

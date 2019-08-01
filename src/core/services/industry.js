@@ -4,25 +4,34 @@ class Industry {
 	constructor() {
 		this.api = api;
 	}
-
-	getIndustryInfo(params) {
-		return this.api.post('/industrial/news', params).then(res => {
+	/** 获取来源 */
+	getOrigins() {
+		return this.api.get('/origins').then(res => {
 			return res.data;
 		});
 	}
 
-	/*
-	getLatestInfo() {
-		return this.api.get('/industrial/latest').then(res => {
-			return res.data;
-		});
-	}
-*/
+	/** 获取初始化数据
+	 * @param { Number } page
+	 */
 	getLatestInfo(page) {
 		const params = {
 			page
 		};
 		return this.api.post('/industrial/latest', params).then(res => {
+			return res.data;
+		});
+	}
+
+	/** 筛选获取最新数据
+	 * @param { Array } area
+	 * @param { Array } key
+	 * @param { Number } page
+	 * @param { Array } time
+	 */
+	getIndustryInfo(params) {
+		console.log(params)
+		return this.api.post('/industrial/news', params).then(res => {
 			return res.data;
 		});
 	}

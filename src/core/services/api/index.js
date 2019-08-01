@@ -1,8 +1,8 @@
 // import React from 'react';
 import REST from './rest';
 
-const API_URL = 'http://192.168.60.71:30622'; // 开发环境调试url
-// const API_URL = null;
+// const API_URL = 'http://192.168.60.71:30622'; // 开发环境调试url
+const API_URL = 'http://10.8.0.59:5000'; // 开发环境调试url
 // const API_URL = process.env.API_URL;
 // const API_URL = process.env.PUBLIC_URL; // 生产环境URL切换
 
