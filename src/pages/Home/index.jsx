@@ -15,24 +15,25 @@ class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: [],
+			data: [], // 存储表格数据
 			loading: false,
 			pagination: {
 				pageSize: 10,
 				defaultCurrent: 1
 			},
 			timeValue: [],
-			area: '',
-			keyword: '',
-			cities: cities,
+			area: '', // 表格的来源
+			keyword: '', // 关键词
+			cities: cities, //表格的来源 = 来源数据
 			flag: 0     // 0: 加载最新   1: 加载筛选数据
 		}
 	}
 
 	componentDidMount() {
-		this.getLatestInfo(0);
+		this.getLatestInfo(0); // 默认获取第一页的内容
 	}
 
+	// 初始化数据
 	getLatestInfo(page) {
 		this.setState({
 			flag: 0
@@ -40,14 +41,14 @@ class Home extends React.Component {
 		this.setState({
 			loading: true
 		});
-		console.log(page)
+		console.log(1)
 		IndustryApi.getLatestInfo(page).then(res => {
-			console.log(res)
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
 				return new IndustryModel(item);
 			});
+			console.log(temp)
 			this.setState({
 				data: temp,
 				loading: false,
@@ -56,6 +57,7 @@ class Home extends React.Component {
 		});
 	}
 
+	// 筛选接口封装
 	getIndustryInfo(params) {
 		this.setState({
 			flag: 1
@@ -66,8 +68,6 @@ class Home extends React.Component {
 		console.log("发送请求：")
 		console.log(params)
 		IndustryApi.getIndustryInfo(params).then(res => {
-			console.log(params)
-			console.log(res)
 			const pagination = { ...this.state.pagination };
 			pagination.total = pagination.pageSize * res.data.page;
 			let temp = res.data.items.map(item => {
@@ -81,7 +81,7 @@ class Home extends React.Component {
 		});
 	}
 
-
+// 搜索按钮触发事件
 	onSearch (e) {
 		e.preventDefault();
 		let params = {};
@@ -105,7 +105,7 @@ class Home extends React.Component {
 		
 		this.getIndustryInfo(params);
 	}
-	
+	// 翻页触发事件
 	handleTableChange(pagination, filters, sorters) {
 		if(sorters && Object.keys(sorters).length && pagination.current === this.state.pagination.current) {
 			return;
@@ -181,9 +181,7 @@ class Home extends React.Component {
 				width: 100
 			},
 		];
-
 		const { getFieldDecorator } = this.props.form;
-		// console.log('a', this.props.form)
 		// 地区
 		const cityOptions = this.state.cities.map(city => <Option key={city.key} value={city.value}>{city.text}</Option>);
 		// 关键字
@@ -192,6 +190,7 @@ class Home extends React.Component {
 			<div>
 				<Header />
 				<div className="table">
+					{/* 搜索关键词 */}
 					<Form layout="inline" onSubmit={this.onSearch.bind(this)}>
 						<FormItem>
 							{
@@ -231,9 +230,11 @@ class Home extends React.Component {
 							<Button type="primary" htmlType="submit">搜索</Button>
 						</FormItem>
 					</Form>
-					<Table rowKey={record => record.id}
-						columns={columns}
+					{/* 表格 */}
+					<Table
 						dataSource={this.state.data}
+						rowKey={record => record.key}
+						columns={columns}
 						bordered
 						pagination={this.state.pagination}
 						loading={this.state.loading}
