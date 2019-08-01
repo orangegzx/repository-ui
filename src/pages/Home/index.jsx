@@ -30,13 +30,26 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getOrigins()
+		this.getOrigins() // 来源列表
+		this.getKeywords() // 关键词列表
 		this.getLatestInfo(0); // 默认获取第一页的内容
 	}
+
 	// 获取来源数据
 	getOrigins() {
 		IndustryApi.getOrigins().then(res => {
-			console.log(res.data)
+			console.log('来源列表：', res.data)
+			// this.setState({
+			// 	data: temp,
+			// 	loading: false,
+			// 	pagination,
+			// });
+		});
+	}
+
+	getKeywords() {
+		IndustryApi.getKeywords().then(res => {
+			console.log('关键词列表：', res.data)
 			// this.setState({
 			// 	data: temp,
 			// 	loading: false,

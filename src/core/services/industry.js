@@ -4,9 +4,17 @@ class Industry {
 	constructor() {
 		this.api = api;
 	}
-	/** 获取来源 */
+
+	/** 获取来源列表 */
 	getOrigins() {
 		return this.api.get('/origins').then(res => {
+			return res.data;
+		});
+	}
+
+	/** 获取关键词列表 */
+	getKeywords() {
+		return this.api.get('/keywords').then(res => {
 			return res.data;
 		});
 	}
